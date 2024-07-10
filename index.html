@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Progress Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Student Progress Tracker</h1>
+        <form action="/add_student" method="post" class="form-inline justify-content-center mb-4">
+            <div class="form-group">
+                <input type="text" name="name" class="form-control mr-2" placeholder="Student Name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Active Listening</th>
+                    <th>Teamwork Communication</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>
+                        <form action="/update_student/{{ student[0] }}" method="post" class="form-inline">
+                            <input type="number" name="active_listening" class="form-control mr-2" value="{{ student[2] }}" min="0" max="4" required>
+                            <input type="number" name="teamwork_communication" class="form-control mr-2" value="{{ student[3] }}" min="0" max="4" required>
+                            <button type="submit" class="btn btn-success mr-2">Update</button>
+                        </form>
+                        <a href="/delete_student/{{ student[0] }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
