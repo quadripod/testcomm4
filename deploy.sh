@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-REPO_URL="https://github.com/votre-nom-utilisateur/votre-repo.git"
+REPO_URL="https://github.com/quadripod/testcomm4.git"
 BRANCH="main"
 
 # Initialiser le dépôt si ce n'est pas déjà fait
